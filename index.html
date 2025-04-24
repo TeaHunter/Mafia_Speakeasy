@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточки ролей — Мафия</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      max-width: 300px;
+      background: #222;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 10px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h2>Нажмите, чтобы получить роль</h2>
+  </div>
+  <button onclick="showRole()">Получить роль</button>
+
+  <script>
+    const roles = [
+      "\u0414\u043e\u043d \u043c\u0430\u0444\u0438\u0438: Ты глава мафии. Выбирай жертву и проверяй игроков на шерифа.",
+      "\u041c\u0430\u0444\u0438\u043e\u0437\u0438: Ты в мафии. Участвуй в ночных убийствах, скрывайся днём.",
+      "\u041c\u0430\u0444\u0438\u043e\u0437\u0438: Ты в мафии. Участвуй в ночных убийствах, скрывайся днём.",
+      "\u0428\u0435\u0440\u0438\u0444: Проверяй по одному игроку за ночь. Ведущий скажет, мафия это или нет.",
+      "\u0414\u043e\u043a\u0442\u043e\u0440: Спасай одного игрока за ночь. Можно один раз спасти себя.",
+      "\u041c\u0430\u043d\u044c\u044f\u043a: Убивай по ночам. Победа — остаться единственным в живых.",
+      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
+      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
+      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
+      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
+      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c"
+    ];
+
+    function showRole() {
+      if (roles.length === 0) {
+        document.getElementById("card").innerHTML = "Все роли уже розданы!";
+        return;
+      }
+      const index = Math.floor(Math.random() * roles.length);
+      const role = roles.splice(index, 1)[0];
+      document.getElementById("card").innerHTML = `<h2>Ваша роль:</h2><p>${role}</p>`;
+    }
+  </script>
+</body>
+</html>
