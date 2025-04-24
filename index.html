@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Карточки ролей — Мафия</title>
+  <title>Mafia Role Cards</title>
   <style>
     body {
       font-family: sans-serif;
@@ -12,18 +12,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      padding: 20px;
       margin: 0;
     }
-    .card {
-      max-width: 300px;
+    .card, .rules {
+      max-width: 400px;
       background: #222;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
       padding: 20px;
       margin: 10px;
       text-align: center;
+    }
+    .rules {
+      font-size: 14px;
+      text-align: left;
     }
     button {
       padding: 10px 20px;
@@ -38,34 +41,48 @@
   </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <h2>Нажмите, чтобы получить роль</h2>
+  <div class="rules">
+    <h2>Game Rules (Quick Guide)</h2>
+    <ul>
+      <li>Everyone gets a secret role: Mafia or Town.</li>
+      <li>Each night: Mafia kills, Doctor saves, Sheriff investigates.</li>
+      <li>Each day: Everyone discusses and votes to eliminate someone.</li>
+      <li>The game ends when Mafia equals or outnumbers the Town, or all Mafia are eliminated.</li>
+    </ul>
   </div>
-  <button onclick="showRole()">Получить роль</button>
+
+  <div class="card" id="card">
+    <h2>Tap to reveal your role</h2>
+  </div>
+  <button onclick="showRole()">Reveal Role</button>
 
   <script>
     const roles = [
-      "\u0414\u043e\u043d \u043c\u0430\u0444\u0438\u0438: Ты глава мафии. Выбирай жертву и проверяй игроков на шерифа.",
-      "\u041c\u0430\u0444\u0438\u043e\u0437\u0438: Ты в мафии. Участвуй в ночных убийствах, скрывайся днём.",
-      "\u041c\u0430\u0444\u0438\u043e\u0437\u0438: Ты в мафии. Участвуй в ночных убийствах, скрывайся днём.",
-      "\u0428\u0435\u0440\u0438\u0444: Проверяй по одному игроку за ночь. Ведущий скажет, мафия это или нет.",
-      "\u0414\u043e\u043a\u0442\u043e\u0440: Спасай одного игрока за ночь. Можно один раз спасти себя.",
-      "\u041c\u0430\u043d\u044c\u044f\u043a: Убивай по ночам. Победа — остаться единственным в живых.",
-      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
-      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
-      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
-      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c", "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c",
-      "\u041c\u0438\u0440\u043d\u044b\u0439 \u0436\u0438\u0442\u0435\u043b\u044c"
+      "Mafia Boss: You're the leader of the mafia. Choose a victim with your teammates. You can also investigate one player per night to see if they're the Sheriff.",
+      "Mafioso: Work with your team to eliminate town members. Stay hidden during the day.",
+      "Mafioso: Work with your team to eliminate town members. Stay hidden during the day.",
+      "Sheriff: Each night, choose a player to investigate. The host will tell you if they're Mafia.",
+      "Doctor: Each night, choose someone to protect. You may save yourself once.",
+      "Maniac: You work alone. Kill someone each night. Win if you're the last one standing.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely.",
+      "Townsperson: Pay attention during discussions and vote wisely."
     ];
 
     function showRole() {
       if (roles.length === 0) {
-        document.getElementById("card").innerHTML = "Все роли уже розданы!";
+        document.getElementById("card").innerHTML = "<h2>All roles have been assigned!</h2>";
         return;
       }
       const index = Math.floor(Math.random() * roles.length);
       const role = roles.splice(index, 1)[0];
-      document.getElementById("card").innerHTML = `<h2>Ваша роль:</h2><p>${role}</p>`;
+      document.getElementById("card").innerHTML = `<h2>Your role:</h2><p>${role}</p>`;
     }
   </script>
 </body>
